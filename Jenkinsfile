@@ -2,6 +2,14 @@ pipeline {
     agent any
 
     stages {
+        stage('Checkout') {
+            steps {
+                script {
+                    checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'github', url: 'https://github.com/itheroesacademy/Dinesh-react.js-project.git']])
+                }
+            }
+        }
+        
         stage('Build Docker Image') {
             steps {
                 script {
